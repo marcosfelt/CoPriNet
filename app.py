@@ -26,7 +26,7 @@ def get_predictions(smiles: List[str], convert_to_grams: Optional[bool]=False)->
             if mol is None:
                 return np.nan
             mw = Chem.Descriptors.ExactMolWt(mol)
-            price = np.log(np.exp(pred) * 1000 / mw)
+            price = pred * 1000 / mw
             return price
 
         preds = [convert_pred(smi, pred) for smi, pred in zip(smiles, preds)]
